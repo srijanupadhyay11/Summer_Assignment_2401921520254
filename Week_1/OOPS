@@ -1,0 +1,61 @@
+interface LibraryUser {
+    void registerAccount();
+    void requestBook();
+}
+
+class KidUsers implements LibraryUser {
+    int userAge;
+    String category;
+
+    public void registerAccount() {
+        if (userAge < 12)
+            System.out.println("Kid account created");
+        else
+            System.out.println("Age must be less than 12");
+    }
+
+    public void requestBook() {
+        if (category.equals("Kids"))
+            System.out.println("Book issued for 10 days");
+        else
+            System.out.println("Only Kids books allowed");
+    }
+}
+
+class AdultUser implements LibraryUser {
+    int userAge;
+    String category;
+
+    public void registerAccount() {
+        if (userAge >= 12)
+            System.out.println("Adult account created");
+        else
+            System.out.println("Age must be 12 or above");
+    }
+
+    public void requestBook() {
+        if (category.equals("Fiction"))
+            System.out.println("Book issued for 7 days");
+        else
+            System.out.println("Only Fiction books allowed");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        KidUsers childMember = new KidUsers();
+        childMember.userAge = 10;
+        childMember.category = "Kids";
+
+        childMember.registerAccount();
+        childMember.requestBook();
+
+        AdultUser adultMember = new AdultUser();
+        adultMember.userAge = 25;
+        adultMember.category = "Fiction";
+
+        adultMember.registerAccount();
+        adultMember.requestBook();
+    }
+}
