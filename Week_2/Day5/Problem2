@@ -1,1 +1,30 @@
+class Solution {
+    public int compress(char[] chars) {
 
+        String ans = "";
+        int i = 0;
+
+        while (i < chars.length) {
+
+            char ch = chars[i];
+            int count = 0;
+
+            while (i < chars.length && chars[i] == ch) {
+                count++;
+                i++;
+            }
+
+            ans += ch;
+
+            if (count > 1) {
+                ans += count;
+            }
+        }
+
+        for (int j = 0; j < ans.length(); j++) {
+            chars[j] = ans.charAt(j);
+        }
+
+        return ans.length();
+    }
+}
