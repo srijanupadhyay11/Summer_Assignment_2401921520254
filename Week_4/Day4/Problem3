@@ -1,0 +1,40 @@
+class Solution {
+
+    int max = Integer.MIN_VALUE;
+
+    public int maxPathSum(TreeNode root) {
+
+        find(root);
+        return max;
+    }
+
+    public int find(TreeNode root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        int left = find(root.left);
+        int right = find(root.right);
+
+        if (left < 0) {
+            left = 0;
+        }
+
+        if (right < 0) {
+            right = 0;
+        }
+
+        int sum = root.val + left + right;
+
+        if (sum > max) {
+            max = sum;
+        }
+
+        if (left > right) {
+            return root.val + left;
+        } else {
+            return root.val + right;
+        }
+    }
+}
